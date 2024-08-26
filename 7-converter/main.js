@@ -28,3 +28,5 @@ function currencyConverse(cash, origCur, tarCur) {
 }
 
 currencyConverse(100, 'rub', 'euro')
+
+
