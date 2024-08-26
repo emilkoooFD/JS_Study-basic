@@ -1,6 +1,6 @@
-const language = '';
+const language = 'ru';
 
-switch (language) {
+switch (language.toUpperCase()) {
     case 'RU':
         console.log('Здравствуйте!');
         break;
