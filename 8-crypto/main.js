@@ -1,5 +1,3 @@
-const password = 'password';
-
 function crypto(password) {
     const arrPass = password.split('')
 
@@ -13,6 +11,17 @@ function check(password, cryptoPass) {
     return decPass === password
 }
 
+const password = 'password';
 const cryptoPass = crypto(password)
-console.log(cryptoPass)
-console.log(check(password, cryptoPass))
+
+console.log(`Пароль: ${password}`)
+console.log(`Зашифрованный пароль: ${cryptoPass}`)
+console.log(`Проверка пароля: ${check(password, cryptoPass)}`)
+
+
+const password2 = 'logginPassword';
+const cryptoPass2 = crypto(password2)
+
+console.log(`Пароль: ${password2}`)
+console.log(`Зашифрованный пароль: ${cryptoPass2}`)
+console.log(`Проверка пароля: ${check(password2, cryptoPass2)}`)
