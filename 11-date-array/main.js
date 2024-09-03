@@ -10,7 +10,7 @@ function sortDate(arr) {
             if (date > 31 || month > 12) {
                 return null
             }
-            return `${date}.${month}.${year}`
+            return `${date}-${month}-${year}`
         }
         return null
     }).filter(elem => elem !== null)
