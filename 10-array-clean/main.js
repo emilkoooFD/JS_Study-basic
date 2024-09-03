@@ -1,14 +1,19 @@
 const array = [1, 2, 3, 4, 2, 6, 13, 24, 15, 21, 8, 9, 13, 56];
 
-function clean(num, arr) {
-    for (let i = arr.length - 1; i >= 0; i--) {
-        if(arr[i] > num) {
-            arr.splice(i, 1)
+function filterArray(arr, func) {
+    let resArray = []
+    for (let i = 0; i < arr.length; i++) {
+        const deleteNum = func(arr[i])
+        if (!deleteNum) {
+          resArray.push(arr[i])
         }
     }
-    return arr
+    return resArray
 }
 
-const filterArray = (fnClean, num, arr) => fnClean(num, arr)
-
-console.log(filterArray(clean, 10, array))
+function clean(number) {
+  return (
+    number > 13 && number < 24
+  )
+}
+console.log(filterArray(array, clean))
