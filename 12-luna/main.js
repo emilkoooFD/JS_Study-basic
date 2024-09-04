@@ -1,33 +1,36 @@
 const cardNum = '4561-1213-4367-2612';
-let correctNum = '';
-
-function filter(cardNumber) {
-  
-}
+const card = '234s834503458353';
+const card1 = '2342834503458353';
+const card2 = '4561-2612-1234-5464';
+const card3 = '4561-2612-1534-5464';
 
 function luna(cardNumber) {
-  for (const number of cardNum) {
+  let correctNum = ''
+
+  for (const number of cardNumber) {
     if (!isNaN(number)) {
       correctNum += number
     }
   }
-  if (correctNum.length < 16) {
-    return 'Введен некорректный номер карты!'
-  } else {
-    const parity = cardNumber.length % 2;
-    let sum = 0;
-    for (let i = 0; i < cardNumber.length; i++) {
-      let digit = cardNumber[i]
-      if (i % 2 === parity) {
-        digit *= 2
-        if (digit > 9) {
-          digit -= 9;
-        }
+  
+  if (correctNum.length !== 16) {
+    return 'Введен некорректный номер карты!' 
+  }
+
+  const parity = correctNum.length % 2;
+  let sum = 0;
+
+  for (let i = 0; i < correctNum.length; i++) {
+    let digit = Number(correctNum[i])
+    if (i % 2 === parity) {
+      digit *= 2
+      if (digit > 9) {
+        digit -= 9;
       }
-      sum += digit
+    }
+    sum += digit
     }
     return (sum % 2) === 0
   }
-}
-filter(cardNum)
-console.log(luna(correctNum))
+
+console.log(luna(card3))
