@@ -42,7 +42,12 @@ const taskManager = {
         }
         const task = findObjBind(obj.id)
         if (task) {
-            task.title = obj.title
+            if (task.title) {
+                task.title = obj.title
+            }
+            if (task.name) {
+                task.name = obj.name
+            }
         }
         return task
     },
@@ -97,12 +102,15 @@ const newTask = {
 // Присвоения
 const addNewTask = taskManager.addTask;
 const deleteNewTaskById = taskManager.deleteTaskById;
-const updateNameNewTask = taskManager.updateNameById; // с ним вопрос и с sortPriority
+const updateNameNewTask = taskManager.updateNameById;
+const sortPriorityNewTask = taskManager.sortPriority
+Object.assign(taskManager, newTask)
 
 // Вызовы
 addNewTask.call(newTask, {name: 'Попить', description: 'Воду', order: 2});
 addNewTask.call(newTask, {name: 'Помыться', description: 'В душе', order: 2});
-deleteNewTaskById.call(newTask, 3);
-updateNameNewTask.call(newTask, {id:2, name: 'Искупаться'})
+// deleteNewTaskById.call(newTask, 3);
+updateNameNewTask.call(newTask, {id: 2, name: 'Полежать'})
+sortPriorityNewTask.call(newTask, 'убыванию')
 
 console.log(newTask)
