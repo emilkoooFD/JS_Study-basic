@@ -22,38 +22,40 @@ const taskManager = {
             priority: 1,
         }
     ],
-    addTask: function(title, priority) {
-        const ids = this.tasks.map(el => {
-            return el.id
-        })
-        const maxId = Math.max(...ids)
-        const newTask = {
-            title,
-            id: maxId + 1,
-            priority
+    lastId: 4,
+    addTask(obj) {
+        this.tasks.push({...obj, id: ++this.lastId})
+    },
+    deleteTaskById(id) {
+        // const task = this.tasks.find(task => task.id === id)
+        const task = findObjBind(id)
+        if(task){
+            this.tasks = this.tasks.filter(f => f.id !== task.id)
+            console.log(`Задача с ID = ${task.id} - удалена`);
         }
-
-        this.tasks.push(newTask)
+        return this
     },
-    deleteTaskById: function(id) {
-        const ElemId = this.tasks.find(task => task.id === id)
-        const ElemIndex = this.tasks.indexOf(ElemId)
-        this.tasks.splice(ElemIndex, 1)
+    updateNameById(obj) {
+        // const task = this.tasks.find(task => task.id === id)
+        if (!obj.id) {
+            return obj
+        }
+        const task = findObjBind(obj.id)
+        if (task) {
+            task.title = obj.title
+        }
+        return task
     },
-    updateNameById: function(id, name) {
-        const ElemId = this.tasks.find(task => task.id === id)
-        ElemId.title = name
-    },
-    sortPriority: function(sortDirect) {
+    sortPriority(sortDirect) {
         this.tasks.sort((a, b) => {
-            if (sortDirect === 'возрастанию') {
+            if (sortDirect.toLowerCase() === 'возрастанию') {
                 if (a.priority > b.priority) {
                     return 1
                 } else if (a.priority < b.priority) {
                     return -1
                 }
             }
-            if (sortDirect === 'убыванию') {
+            if (sortDirect.toLowerCase() === 'убыванию') {
                 if (a.priority < b.priority) {
                     return 1
                 } else if (a.priority > b.priority) {
@@ -63,9 +65,14 @@ const taskManager = {
         })
     }
 };
+const findObjBind = findObj.bind(taskManager)
+function findObj(id) {
+    return this.tasks.find(task => task.id === id)
+}
 
-// taskManager.addTask('Покурить', 1)
-// taskManager.deleteTaskById(5)
-// taskManager.updateNameById(1, 'Поиграть')
-// taskManager.sortPriority('убыванию')
+taskManager.addTask({title: 'Покурить', priority: 1})
+taskManager.addTask({title: 'Лечь', priority: 2})
+taskManager.deleteTaskById(6)
+taskManager.updateNameById({id: 1, title: 'Поиграть'})
+// taskManager.sortPriority('Убыванию')
 console.log(taskManager.tasks)

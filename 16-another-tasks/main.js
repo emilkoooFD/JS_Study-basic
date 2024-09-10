@@ -97,7 +97,7 @@ const newTask = {
 // Присвоения
 const addNewTask = taskManager.addTask;
 const deleteNewTaskById = taskManager.deleteTaskById;
-const updateNameNewTask = taskManager.updateNameById;
+const updateNameNewTask = taskManager.updateNameById; // с ним вопрос и с sortPriority
 
 // Вызовы
 addNewTask.call(newTask, {name: 'Попить', description: 'Воду', order: 2});
