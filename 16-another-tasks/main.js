@@ -5,21 +5,6 @@ const taskManager = {
             title: "Сходить в магазин",
             id: 1,
             priority: 3,
-        },
-        {
-            title: "Приготовить кушать",
-            id: 2,
-            priority: 4,
-        },
-        {
-            title: "Умыться",
-            id: 3,
-            priority: 2,
-        },
-        {
-            title: "Покормить рыбок",
-            id: 4,
-            priority: 1,
         }
     ],
     lastId: 4,
@@ -82,19 +67,7 @@ const newTask = {
             id: 1,
             description: 'Пятерка',
             order: 0
-        },
-        {
-            name: "Поспать",
-            id: 2,
-            description: 'Дома',
-            order: 1
-        },
-        {
-            name: "Поесть",
-            id: 3,
-            description: 'Пиццу',
-            order: 2
-        },
+        }
     ],
     lastId: 3
 }
@@ -109,7 +82,7 @@ Object.assign(taskManager, newTask)
 // Вызовы
 addNewTask.call(newTask, {name: 'Попить', description: 'Воду', order: 2});
 addNewTask.call(newTask, {name: 'Помыться', description: 'В душе', order: 2});
-// deleteNewTaskById.call(newTask, 3);
+deleteNewTaskById.call(newTask, 3);
 updateNameNewTask.call(newTask, {id: 2, name: 'Полежать'})
 sortPriorityNewTask.call(newTask, 'убыванию')
 
