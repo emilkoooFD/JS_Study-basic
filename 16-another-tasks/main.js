@@ -1,3 +1,11 @@
+// Основное содержание:
+
+// Введение
+// Обзор предыдущего задания: создание мини Task Manager'a с базовыми свойствами (ID, Name, Order).
+// Расширение задачи
+// Ввод нового типа задачи с дополнительным свойством Description.
+// Цель: расширить функциональность без изменения исходных методов.
+
 'use strict'
 const taskManager = {
     tasks: [
@@ -12,7 +20,6 @@ const taskManager = {
         this.tasks.push({...obj, id: ++this.lastId})
     },
     deleteTaskById(id) {
-        // const task = this.tasks.find(task => task.id === id)
         const task = findObjBind(id)
         if(task){
             this.tasks = this.tasks.filter(f => f.id !== task.id)
@@ -21,7 +28,6 @@ const taskManager = {
         return this
     },
     updateNameById(obj) {
-        // const task = this.tasks.find(task => task.id === id)
         if (!obj.id) {
             return obj
         }
@@ -72,18 +78,13 @@ const newTask = {
     lastId: 3
 }
 
-// Присвоения
-const addNewTask = taskManager.addTask;
-const deleteNewTaskById = taskManager.deleteTaskById;
-const updateNameNewTask = taskManager.updateNameById;
-const sortPriorityNewTask = taskManager.sortPriority
 Object.assign(taskManager, newTask)
 
 // Вызовы
-addNewTask.call(newTask, {name: 'Попить', description: 'Воду', order: 2});
-addNewTask.call(newTask, {name: 'Помыться', description: 'В душе', order: 2});
-deleteNewTaskById.call(newTask, 3);
-updateNameNewTask.call(newTask, {id: 2, name: 'Полежать'})
-sortPriorityNewTask.call(newTask, 'убыванию')
+taskManager.addTask.call(newTask, {name: 'Попить', description: 'Воду', order: 2});
+taskManager.addTask.call(newTask, {name: 'Помыться', description: 'В душе', order: 2});
+taskManager.deleteTaskById.call(newTask, 3);
+taskManager.updateNameById.call(newTask, {id: 2, name: 'Полежать'})
+taskManager.sortPriority.call(newTask, 'убыванию')
 
 console.log(newTask)
